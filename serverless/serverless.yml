@@ -1,0 +1,40 @@
+service: serverless
+
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  stage: dev
+  region: us-east-1
+  apiName: GenommaLab
+  vpc:
+    securityGroupsdIds:
+      - sg-77b00f2e
+    subnetsIds:
+      - subnet-e2a134dc
+      - subnet-4b317317
+  
+
+functions:
+  GetAllDataTransactions:
+    handler: handler.GetAllDataTransactions
+    events:
+      - http:
+          path: genommalab/supplychain/getalldatatransactions
+          method: get
+  AddDataProvider:
+    handler: handler.AddDataProvider
+    events:
+      - http:
+          path: genommalab/supplychain/add-data-provider
+          method: post
+          cors: true
+  GetDataProvider:
+    handler: handler.GetDataProvider
+    events:
+      - http:
+          path: genommalab/supplychain/get-data-provider/{provider}
+          method: get
+          cors: true
+
+
