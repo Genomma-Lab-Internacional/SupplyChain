@@ -36,7 +36,7 @@ class Navbar extends React.Component{
         <div>
           <Header>
             <Menu  theme="dark" mode="horizontal" style={{ lineHeight : "10px"}}>
-              <Menu.Item className="Navbar1" key="profile"><Link to='/profileviewer/:role/:id'>Perfil</Link></Menu.Item>
+              <Menu.Item className="Navbar1" key="profile"><Link to='/adddataprovider/:provider'>Mi perfil</Link></Menu.Item>
               <Menu.Item key="logout"><Link to='/logout'>Cerrar sesión</Link></Menu.Item>
               <Menu.Item key="home"><Link to='/'>Home</Link></Menu.Item>
               <Menu.Item>
@@ -48,7 +48,7 @@ class Navbar extends React.Component{
         <div>
           <Header className="Navbar" >
             <Menu defaultSelectedKeys={['3']} mode="horizontal" theme="dark">
-              <Menu.Item key="login"><Link to='/Login'>Iniciar sesión</Link></Menu.Item>
+              <Menu.Item key="login"><Link to='/adddataprovider/:provider'>Iniciar sesión</Link></Menu.Item>
               <Menu.Item key="FAQS"><Link to='/FAQS'>Preguntas</Link></Menu.Item>
               <Menu.Item key="home"><Link to='/'>Home</Link></Menu.Item>
               <Menu.Item> 

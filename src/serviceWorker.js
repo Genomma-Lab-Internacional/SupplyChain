@@ -14,11 +14,7 @@ const isLocalhost = Boolean(
   window.location.hostname === 'localhost' ||
     // [::1] is the IPv6 localhost address.
     window.location.hostname === '[::1]' ||
-<<<<<<< HEAD
     // 127.0.0.0/8 are considered localhost for IPv4.
-=======
-    // 127.0.0.1/8 is considered localhost for IPv4.
->>>>>>> 88514f326c8c20450ec34710a8a36c01664b1ef5
     window.location.hostname.match(
       /^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/
     )
@@ -104,13 +100,7 @@ function registerValidSW(swUrl, config) {
 
 function checkValidServiceWorker(swUrl, config) {
   // Check if the service worker can be found. If it can't reload the page.
-<<<<<<< HEAD
-  fetch(swUrl, {
-    headers: { 'Service-Worker': 'script' }
-  })
-=======
   fetch(swUrl)
->>>>>>> 88514f326c8c20450ec34710a8a36c01664b1ef5
     .then(response => {
       // Ensure service worker exists, and that we really are getting a JS file.
       const contentType = response.headers.get('content-type');

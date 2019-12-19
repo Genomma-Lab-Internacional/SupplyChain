@@ -10,18 +10,18 @@ import {Layout, Modal, Button, Icon, message, Input} from 'antd';
 
 export default function Index() {
 
-  const [data,SetData] = useState({approved:false}) 
-  const [visible, setVisible] = useState(false)
+const [data,SetData] = useState({approved:false}) 
+const [visible, setVisible] = useState(false)
 
- const showModal = (e) => {
+const showModal = (e) => {
     console.log(e);
     setVisible(true)
   }
-  const handleOk = e => {
+const handleOk = e => {
     console.log(e);
     setVisible(false)
   }
-  const handleCancel = e => {
+const handleCancel = e => {
     console.log(e);
     setVisible(false)
   }

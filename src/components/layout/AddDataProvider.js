@@ -18,6 +18,20 @@ const menu = (
 
 export default function AddDataProvider (props) {
 	const [data,SetData] = useState({approved:false}) 
+	const [visible, setVisible] = useState(false)
+
+	const showModal = (e) => {
+    console.log(e);
+    setVisible(true)
+}
+	const handleOk = e => {
+    console.log(e);
+    setVisible(false)
+  }
+	const handleCancel = e => {
+    console.log(e);
+    setVisible(false)
+  }
 
 	const uploadFile = (e) => {
 		data["providerFile"] = e.target.files[0]
@@ -49,20 +63,30 @@ export default function AddDataProvider (props) {
 					<h3>Sube tus archivos de excel</h3>
 					<input id="file" onChange={uploadFile} type="file" name="file"/>
 					<br/>
-					<Button type="default" onClick={sendDataToServer}>Enviar a Genomma</Button>
+					<Button type="default" style={{"width": "40%"}} onClick={sendDataToServer}>Enviar a Genomma</Button>
 					
 					</div>
 					
 					<div className="cont-2">
 						<p>Los archivos deben cargarse en formato .xlsx.
-						<br/>
-						Para descargar un ejemplo del formato da click<a style={{"color": "blue"}} href="/" download> aquí</a></p>
-						<div className="cont-3">
-							<img alt="logo" src={require("../assets/logo2.png")}/>
-							<Button type="link">Contáctanos</Button>
-						</div>
-					</div>
-				</section>
+        				<br/>
+       				 	Para descargar una guía del formato en el que debes cargar tus archivos da click<a style={{"color": "blue"}} href="/" download> aquí</a></p>
+        			</div>
+        			</section>
+					<div className="cont-3">
+            		<div className="check">
+            			<img alt="logo" src={require('../assets/check-file.png')}/>
+            			<p>Verifica que el formato de tu archivo sea correcto.</p>
+            		</div>
+            		<div className="excel">
+            			<img alt="logo" src={require('../assets/excel.png')}/>
+            			<p>Cárgalo desde tus archivos en nuestra plataforma.</p>
+            		</div>
+            		<div className="upload">
+            			<img alt="logo" src={require('../assets/upload.png')}/>
+            			<p>Listo! Recuerda subir tus reportes semanalmente.</p>
+            		</div>
+      			</div>
 			</div>
     )
 }
