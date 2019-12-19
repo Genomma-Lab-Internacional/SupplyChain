@@ -1,0 +1,60 @@
+nav {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1rem;
+  font-weight: bold;
+  background-color: #153166 ;
+}
+
+nav img {
+  width: 150px;
+  height: 50px;
+}
+
+nav ul {
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+  width: 50%;
+}
+
+nav ul li {
+  margin-right: 5%;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: white;
+}
+
+footer {
+  font-size: 1rem;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+  padding: 2% 0%;
+  background-color: #153166 ;
+}
+
+#index-container {
+  margin:5% 2% 2% 5%
+}
+
+#index-container select {
+  font-size: 1rem;
+}
+
+#index-container input {
+  font-size: 1rem;
+}
+
+#index-container button {
+  font-size: 1rem;
+  color: white;
+  border: none;
+  padding: 0.5%;
+  background-color: #153166;
+  cursor: pointer;
+  transition: 1s;
+}
+

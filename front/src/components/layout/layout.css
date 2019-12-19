@@ -1,0 +1,161 @@
+a{
+    text-decoration-style: none;
+    text-decoration: none;
+}
+
+*{
+    margin : 0;
+    padding: 0;
+    font-family: 'Alatsi', sans-serif;
+}
+
+/*Navbar/////////////////////////*/
+
+Header{
+    font-size: 2rem;
+    display: flex;
+    justify-content: flex-end;
+}
+
+Menu.Item:hover{
+    background-color: rgba(212, 212, 212, 0.418)smoke;
+}
+
+
+/*Footer//////////*/
+footer{
+    display: flex;
+    text-decoration: none;
+    background-color: rgb(8, 8, 29);
+    color: white;
+    height: 10vh;
+    z-index: -1;
+}
+footer a{
+    text-decoration: none;
+    color: white;
+}
+
+footer ul li{
+    list-style-type: none;
+}
+
+.Foot1{
+    display: flex;
+    width: 40%;
+    margin-top: 2%;
+}
+
+.Foot2{
+    display: flex;
+    justify-content: flex-end;
+    width: 50%;
+    margin-bottom: 2%; 
+}
+
+/*Home /////////////////*/
+.Home{
+    margin:  3%;
+    background-image: linear-gradient( rgb(138, 151, 185), rgb(11, 23, 54));
+    height: 80vh;
+    padding: 5%;
+}
+.Home h2{
+    height: 2vh;
+}
+.Home a{
+    color: rgb(75, 75, 75);
+}
+
+.container{
+    display: flex;
+    flex-direction: row;
+    border:black;
+}
+.cont-1{
+    display: flex;
+    width: 60%;
+    flex-direction: column;
+    margin-top: 10%;
+    align-items: flex-start;
+}
+
+.cont-2{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap:nowrap;
+    margin-top:10%;
+    width:70%;
+}
+
+.cont-3{
+    display: flex; 
+    flex-direction: column;
+    align-items: center;
+    flex-wrap:nowrap;
+}
+ .cont-3 img{
+    height: 20vh;
+    width:15vw;
+}
+
+.cont-3 img:hover{
+    opacity: 0.5;
+} 
+
+/*FAQS //////////////////*/
+.faqs{
+    display: flex;
+    height: 10vh;
+    margin: 2%;
+}
+.faqs img{
+    margin-left: 55vw;
+    height: 80%;
+}
+.foot-faq{
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/*Login////////////////////*/
+.login{
+    display: flex;
+    height: 80vh;
+    margin: 2%;
+    background-image: linear-gradient( rgb(138, 151, 185), rgb(11, 23, 54))
+}
+
+.cont-login{
+   display: flex;
+   width: 25%;
+   margin: 5% 35%;
+   border: 1px solid rgba(255, 255, 255, 0.815);
+   border-radius:20px;
+   background-color: rgba(245, 245, 245, 0.554);
+   flex-direction: column;
+   justify-content: center;
+   align-items: center; 
+}
+
+.cont-login img{
+    height: 50%;
+    margin: 5%;
+}
+.cont-login input{
+    border-radius: 5px;
+    border: 0;
+}
+
+
+button{
+    border-radius: 5px;
+    background-color: rgb(33, 117, 156);
+    color: white;
+    border: 0;
+    width:80%;
+    height:10%;
+}
