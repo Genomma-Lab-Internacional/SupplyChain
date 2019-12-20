@@ -57,14 +57,16 @@ export default function AddDataProvider (props) {
 
     return (
 			<div className="Home">
+				<div className="home-cont">
 				<h2>Bienvenido proveedor</h2>
+				<img alt="logo" src={require('../assets/logo2.png')}/>
+				</div>
 				<section className="container">
 					<div className="cont-1">
-					<h3>Sube tus archivos de excel</h3>
-					<input id="file" onChange={uploadFile} type="file" name="file"/>
-					<br/>
-					<Button type="default" style={{"width": "40%"}} onClick={sendDataToServer}>Enviar a Genomma</Button>
-					
+						<h3>Sube tus archivos de excel</h3>
+						<input id="file" onChange={uploadFile} type="file" name="file"/>
+						<br/>
+						<Button type="default" style={{"width": "40%"}} onClick={sendDataToServer}>Enviar a Genomma</Button>
 					</div>
 					
 					<div className="cont-2">

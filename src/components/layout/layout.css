@@ -60,7 +60,7 @@ footer ul li{
 /*Home /////////////////*/
 .Home{
     font-family: 'Ropa Sans', sans-serif;
-    margin:  1%;
+    margin: 1%;
     background-image: linear-gradient( rgb(204, 205, 207), rgb(221, 224, 235));
     height: 80vh;
     padding: 5%;
@@ -71,19 +71,25 @@ footer ul li{
 .Home a{
     color: rgb(75, 75, 75);
 }
-
+.Home img{
+    height: 10vh;
+    width: auto;
+}
+.home-cont{
+    display: flex;
+    justify-content: space-between;
+}
 
 .container{
     display: flex;
     flex-direction: row;
-
 }
 
 .cont-1{
     display: flex;
     width: 60%;
     flex-direction: column;
-    margin-top: 5%;
+    margin-top: 2%;
     align-items: flex-start;
     font-size: 1rem;
 }
@@ -101,43 +107,47 @@ footer ul li{
 .cont-2 a:hover{
     cursor: pointer   
 }
-
 .cont-3{
     display: flex;
     flex-direction: row;
     align-items: center;
-    flex-wrap:nowrap;
     height:60%;
-    margin-left:5%;
     padding: 5%;
+    width: 50%;
+    background-color: rgb(226, 226, 226);
+    border-radius: 25px;
+    margin-top: 2%;
+    border: 15px solid rgba(20, 31, 44, 0.651);
+    justify-content:flex-end;
 }
+
  .cont-3 img{
     height: auto;
     width:10vw;
     background-color: rgb(255, 255, 255);
     border-radius: 50%;
 }
-
-
 .check{
     display: flex;
     flex-direction: column;
     width:30%;
     justify-content: center;
+    margin:2%;
 }
 .excel{
     display: flex;
     flex-direction: column;
     width:30%;
     justify-content: center;
+    margin:2%;
 }
 .upload{
     display: flex;
     flex-direction: column;
     width:30%;
     justify-content: center;
+    margin:2%;
 }
-
 .cont-3 img:hover{   
     opacity: 0.5;
 } 
