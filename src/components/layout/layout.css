@@ -218,3 +218,32 @@ button{
     padding: 5%;
     width: 10%;
 }
+
+/*///////Genomma validation*/
+.body-gen{
+    font-family: 'Ropa Sans', sans-serif;
+    margin: 1%;
+    background-image: linear-gradient( rgb(204, 205, 207), rgb(221, 224, 235));
+    height: 80vh;
+    padding: 5%;
+}
+
+.body-gen h1{
+    font-family: 'Calistoga', cursive;
+}
+
+Button{
+    border-radius: 5px;
+    background-color: rgb(33, 117, 156);
+    color: white;
+    border: 0;
+    margin:2%;
+    width:30%;
+    height:10%;
+}
+
+.body-gen img{
+    height:20%;
+    width: auto;
+}
+

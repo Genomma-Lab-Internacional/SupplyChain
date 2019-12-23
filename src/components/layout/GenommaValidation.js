@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react"
 import axios from "axios"
-import { Table, Divider, Tag } from 'antd';
+import { Table, Divider, Tag, Button} from 'antd';
 
 export default function GenommaValidation (props) {
     const [ provider,setProvider ] = useState({})
@@ -30,8 +30,8 @@ export default function GenommaValidation (props) {
 
     return (
       <div>
-        <div>
-          <h1>Genommalab</h1>
+        <div className="body-gen">
+          <h1>Genomma Lab</h1>
           <select onChange={selectProvider} name="provider">
             <option>Selecciona el proveedor...</option>
             <option value="Albek">Albek</option>
@@ -40,8 +40,10 @@ export default function GenommaValidation (props) {
             <option value="Provider4">Proveedor 4</option>
             <option value="Provider5">Proveedor 5</option>
           </select>
-          <button onClick={sendDataToMasterInventario}>Enviar a Genommalab</button>
+          <Button onClick={sendDataToMasterInventario}>Enviar a Genommalab</Button>
+          <img href="" src={require('../assets/logo2.png')}/>
         </div>
+          
         <table>
           <tbody>
             {SKUA.map( s => <tr>{s}</tr> )}
