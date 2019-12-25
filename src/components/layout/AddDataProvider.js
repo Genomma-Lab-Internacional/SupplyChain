@@ -50,9 +50,7 @@ export default function AddDataProvider (props) {
 					<input id="file" onChange={uploadFile} type="file" name="file"/>
 					<br/>
 					<Button type="default" onClick={sendDataToServer}>Enviar a Genomma</Button>
-					
 					</div>
-					
 					<div className="cont-2">
 						<p>Los archivos deben cargarse en formato .xlsx.
 						<br/>

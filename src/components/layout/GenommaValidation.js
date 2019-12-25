@@ -1,37 +1,38 @@
-import React, {useState, useEffect} from "react"
+import React, {useState} from "react"
 import axios from "axios"
 import { Table, Divider, Tag } from 'antd';
 
-export default function GenommaValidation (props) {
-    const [ provider,setProvider ] = useState({})
-    const [ SKUA, setSKUA ] = useState([])
-    const [ quantity, setQuantity ] = useState([])
-    const [ description, setDescription ] = useState([])
+export default function GenommaValidation () {
+  const [ SKUA, setSKUA ] = useState([])
+  const [ quantity, setQuantity ] = useState([])
+  const [ description, setDescription ] = useState([])
+  const [ ID_provider, setID_provider ] = useState([])
+  const [ provider,setProvider ] = useState({})
+  const [ providerCreated_at, setProviderCreated_at ] = useState([])
 
-    
     const selectProvider = (e) => {
       provider[e.target.name] = e.target.value
       axios.get(`https://6h0ifo0736.execute-api.us-east-1.amazonaws.com/dev/genommalab/supplychain/get-data-provider/${provider.provider}`)
         .then( success => {
           console.log(success)
           for(let i=0; i<success.data.provider.length; i++) {
-            console.log(success.data.provider[i])
+            ID_provider.push(Object.values(success.data.provider[i])[0])
             SKUA.push(Object.values(success.data.provider[i])[1])
             description.push(Object.values(success.data.provider[i])[2])
             quantity.push(Object.values(success.data.provider[i])[3])
-            setSKUA([SKUA])
+            providerCreated_at.push(Object.values(success.data.provider[i])[5])
+            // setSKUA([SKUA])
           }
-          console.log(SKUA,description,quantity,provider)
         })
         .catch( error => console.log(error) )
     }
 
     const sendDataToMasterInventario = () => {
-      axios.post("https://6h0ifo0736.execute-api.us-east-1.amazonaws.com/dev/genommalab/supplychain/add-data-master-inventario",{provider,SKUA,quantity,description})
+      axios.post("https://6h0ifo0736.execute-api.us-east-1.amazonaws.com/dev/genommalab/supplychain/add-data-master-inventario",
+      {SKUA,quantity,description,ID_provider,provider,providerCreated_at})
       .then( success => console.log(success)  )
       .catch( error => console.log(error) )
     }
-
 
     return (
       <div>
@@ -45,6 +46,7 @@ export default function GenommaValidation (props) {
             <option value="Provider4">Proveedor 4</option>
             <option value="Provider5">Proveedor 5</option>
           </select>
+          <br/>
           <button onClick={sendDataToMasterInventario}>Enviar a Genommalab</button>
         </div>
         <table>
@@ -52,8 +54,6 @@ export default function GenommaValidation (props) {
             {SKUA.map( s => <tr>{s}</tr> )}
           </tbody>
         </table>
-          
-      
       </div>
     )
 }
