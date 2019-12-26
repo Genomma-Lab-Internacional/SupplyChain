@@ -53,6 +53,7 @@ export default function AddDataProvider (props) {
 			.then( success =>	console.log(success) )
 			.catch( error => console.log(error) )
 	}
+	
 
 
     return (
