@@ -210,7 +210,7 @@ button{
     background-color: rgb(33, 117, 156);
     color: white;
     border: 0;
-    width:80%;
+    width:auto;
     height:10%;
 }
 
@@ -227,9 +227,21 @@ button{
     height: 80vh;
     padding: 5%;
 }
+.cont-gen {
+    width: 70%;
+}
+.cont-gen option{
+    border-radius: 20px;
+}
+.gen-img{
+    display: flex;
+    justify-content: flex-end;
+    width: 50%;
+    margin-left:30vw;
+}
 
 .body-gen h1{
-    font-family: 'Calistoga', cursive;
+    font-family: 'Ropa Sans', sans-serif;;
 }
 
 Button{
@@ -241,9 +253,7 @@ Button{
     width:30%;
     height:10%;
 }
-
 .body-gen img{
-    height:20%;
-    width: auto;
+    height:auto;
+    width: 50%;
 }
-

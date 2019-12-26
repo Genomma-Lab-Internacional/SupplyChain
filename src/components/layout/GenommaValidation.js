@@ -32,6 +32,7 @@ export default function GenommaValidation (props) {
       <div>
         <div className="body-gen">
           <h1>Genomma Lab</h1>
+          <div className="cont-gen">
           <select onChange={selectProvider} name="provider">
             <option>Selecciona el proveedor...</option>
             <option value="Albek">Albek</option>
@@ -40,8 +41,13 @@ export default function GenommaValidation (props) {
             <option value="Provider4">Proveedor 4</option>
             <option value="Provider5">Proveedor 5</option>
           </select>
+          
           <Button onClick={sendDataToMasterInventario}>Enviar a Genommalab</Button>
+          </div>
+          <div className="gen-img">
           <img href="" src={require('../assets/logo2.png')}/>
+          </div>
+          
         </div>
           
         <table>

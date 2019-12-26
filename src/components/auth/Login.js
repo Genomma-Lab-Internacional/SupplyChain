@@ -41,7 +41,7 @@ export default function Login (props) {
 				<br/>
 				<input onChange={inputData} type="password" name="password" placeholder="Contraseña"/>
 				<br/>
-				<button onClick={VerifyUser}>Ingresa a Genomma-Supply Chain</button>
+				<button onClick={VerifyUser}>Ingresa a Genomma</button>
 			</div>
 		</section>
 	)
