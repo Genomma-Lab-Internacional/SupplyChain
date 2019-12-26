@@ -16,8 +16,8 @@ provider:
   
 
 functions:
-  GetAllDataTransactions:
-    handler: handler.GetAllDataTransactions
+  GetDataMasterInventario:
+    handler: handler.GetDataMasterInventario
     events:
       - http:
           path: genommalab/supplychain/getalldatatransactions
@@ -36,5 +36,9 @@ functions:
           path: genommalab/supplychain/get-data-provider/{provider}
           method: get
           cors: true
-
+  AddDataMasterInventario:
+    handler: handler.AddDataMasterInventario
+    events:
+      - http:
+          path: genommalab/supplychain/add-data-master-inventario
 
