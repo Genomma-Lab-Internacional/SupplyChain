@@ -1,10 +1,46 @@
 'use strict';
 const connection = require ("./connection")
 
-module.exports.GetAllDataTransactions = (event,context,callback) => {
+module.exports.GetDataMasterInventario = (event,context,callback) => {
   context.callbackWaitsForEmptyEventLoop = false
-  const query = "SELECT * FROM MasterInventory"
-  connection.query(query,(error,rows) => {
+  const body = JSON.parse(event.body);
+  console.log(body)
+  console.log(event)
+  const query = `SELECT COUNT(ID_${body.provider["provider"]} FROM MasterInventory`
+  // connection.query(query,(error,rows) => {
+  //   if(error) {
+  //     callback({
+  //       statusCode:500,
+  //       body:JSON.stringify(error),
+  //       headers:{
+  //         "Access-Control-Allow-Origin":"*"
+  //       }
+  //     })
+  //   } else {
+  //     callback(null,{
+  //       statusCode:200,
+  //       body:JSON.stringify({ Master:rows }),
+  //       headers:{
+  //         "Access-Control-Allow-Origin":"*"
+  //       }
+  //     })
+  //   }
+  // })
+}
+
+
+module.exports.AddDataProvider = (event,context,callback) => {
+  context.callbackWaitsForEmptyEventLoop = false;
+  
+  const body = JSON.parse(event.body);
+  let values=[]
+  let insert = `INSERT INTO ${body.provider}Inventario (SKUA,descripcion,cantidad,provider) VALUES ?`;
+  
+  for (let i=1; i<body.table.length; i++) {
+    values.push([body.table[i][0],body.table[i][1],body.table[i][2],body.provider])
+  }
+  
+  connection.query(insert,[values],(error,rows) => {
     if(error) {
       callback({
         statusCode:500,
@@ -12,51 +48,19 @@ module.exports.GetAllDataTransactions = (event,context,callback) => {
         headers:{
           "Access-Control-Allow-Origin":"*"
         }
-      })
+      });
     } else {
       callback(null,{
         statusCode:200,
-        body:JSON.stringify({ Transactions:rows }),
+        body:JSON.stringify(body.table),
         headers:{
           "Access-Control-Allow-Origin":"*"
         }
-      })
+      });
     }
-  })
+  });
 }
 
-
-  module.exports.AddDataProvider = (event,context,callback) => {
-    context.callbackWaitsForEmptyEventLoop = false;
-    
-    const body = JSON.parse(event.body);
-    let values=[]
-    let insert = `INSERT INTO ${body.provider}Inventario (SKUAGenomma,Descripcion,Cantidad) VALUES ?`;
-    
-    for (let i=1; i<body.table.length; i++) {
-      values.push([body.table[i][0],body.table[i][1],body.table[i][2]])
-    }
-    
-    connection.query(insert,[values],(error,rows) => {
-      if(error) {
-        callback({
-          statusCode:500,
-          body:JSON.stringify(error),
-          headers:{
-            "Access-Control-Allow-Origin":"*"
-          }
-        });
-      } else {
-        callback(null,{
-          statusCode:200,
-          body:JSON.stringify(body.table),
-          headers:{
-            "Access-Control-Allow-Origin":"*"
-          }
-        });
-      }
-    });
-  }
 
 
 module.exports.GetDataProvider = (event,context,callback) => {
@@ -88,18 +92,28 @@ module.exports.GetDataProvider = (event,context,callback) => {
   })
 }
 
-module.exports.AddDataMaster = (event,context,callback) => {
+module.exports.AddDataMasterInventario = (event,context,callback) => {
   context.callbackWaitsForEmptyEventLoop = false;
     
   const body = JSON.parse(event.body);
+  console.log(body)
+  
   let values=[]
-  let insert = `INSERT INTO MasterInventario (SKUAGenomma,Descripcion,Cantidad) VALUES ?`;
+  // let insert = `REPLACE INTO MasterInventario (SKUA,descripcion,cantidad,ID_${body.provider["provider"]}) VALUES ?`;
+
+  let insert = `INSERT INTO MasterInventario (SKUA, descripcion, cantidad, ID_${body.provider["provider"]}) SELECT SKUA, descripcion, cantidad, ID_${body.provider["provider"]} FROM ${body.provider["provider"]}Inventario WHERE ID_${body.provider["provider"]}>${body.dataSize[0]};`
+  console.log(insert)
+  // for (let i=0; i<body.SKUA.length; i++) {
+  //   values.push([
+  //     body.SKUA[i],
+  //     body.description[i],
+  //     body.quantity[i],
+  //     body.ID_provider[i]
+  //   ])
+  // }
   
-  for (let i=1; i<body.table.length; i++) {
-    values.push([body.table[i][0],body.table[i][1],body.table[i][2]])
-  }
-  
-  connection.query(insert,[values],(error,rows) => {
+  // connection.query(insert,[values],(error,rows) => {
+  connection.query(insert,(error,rows) => {
     if(error) {
       callback({
         statusCode:500,
@@ -111,7 +125,7 @@ module.exports.AddDataMaster = (event,context,callback) => {
     } else {
       callback(null,{
         statusCode:200,
-        body:JSON.stringify(body.table),
+        body:JSON.stringify(values),
         headers:{
           "Access-Control-Allow-Origin":"*"
         }

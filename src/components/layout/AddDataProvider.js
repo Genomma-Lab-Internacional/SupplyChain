@@ -49,7 +49,7 @@ export default function AddDataProvider (props) {
  
 	const sendDataToServer = () => {
     console.log(data)
-		axios.post("https://kyyw75ebq3.execute-api.us-east-1.amazonaws.com/dev/genommalab/supplychain/add-data-provider",data)
+		axios.post("https://6h0ifo0736.execute-api.us-east-1.amazonaws.com/dev/genommalab/supplychain/add-data-provider",data)
 			.then( success =>	console.log(success) )
 			.catch( error => console.log(error) )
 	}
@@ -68,7 +68,6 @@ export default function AddDataProvider (props) {
 						<br/>
 						<Button type="default" style={{"width": "40%"}} onClick={sendDataToServer}>Enviar a Genomma</Button>
 					</div>
-					
 					<div className="cont-2">
 						<p>Los archivos deben cargarse en formato .xlsx.
         				<br/>

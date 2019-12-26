@@ -1,32 +1,45 @@
-import React, {useState, useEffect} from "react"
+import React, {useState} from "react"
 import axios from "axios"
 import { Table, Divider, Tag, Button} from 'antd';
 
-export default function GenommaValidation (props) {
-    const [ provider,setProvider ] = useState({})
-    const [ SKUA, setSKUA ] = useState([])
-    const [ quantity, setQuantity ] = useState([])
-    const [ description, setDescription ] = useState([])
-    
-    const selectProvider = (e) => {
-      provider[e.target.name] = e.target.value
-      axios.get(`https://kyyw75ebq3.execute-api.us-east-1.amazonaws.com/dev/genommalab/supplychain/get-data-provider/${provider.provider}`)
-        .then( success => {
-          for(let i=0; i<success.data.provider.length; i++) {
-            SKUA.push(Object.values(success.data.provider[i])[0])
-            description.push(Object.values(success.data.provider[i])[1])
-            quantity.push(Object.values(success.data.provider[i])[2])
-            setSKUA([SKUA])
-          }
-          console.log(SKUA)
-        })
-        .catch( error => console.log(error) )
+export default function GenommaValidation () {
+  const [ SKUA, setSKUA ] = useState([])
+  const [ quantity, setQuantity ] = useState([])
+  const [ description, setDescription ] = useState([])
+  const [ ID_provider, setID_provider ] = useState([])
+  const [ provider,setProvider ] = useState({})
+  const [ dataSize, setDataSize ] = useState([])
+
+  const selectProvider = (e) => {
+    provider[e.target.name] = e.target.value
+    axios.get(`https://6h0ifo0736.execute-api.us-east-1.amazonaws.com/dev/genommalab/supplychain/get-data-provider/${provider.provider}`)
+      .then( success => {
+        console.log(success)
+        for(let i=0; i<success.data.provider.length; i++) {
+          ID_provider.push(Object.values(success.data.provider[i])[0])
+          SKUA.push(Object.values(success.data.provider[i])[1])
+          description.push(Object.values(success.data.provider[i])[2])
+          quantity.push(Object.values(success.data.provider[i])[3])
+          // setSKUA([SKUA])
+        }
+        dataSize.push(success.data.provider.length)
+        console.log(dataSize,provider)
+      })
+      .catch( error => console.log(error) )
+      
+      // axios.get(`https://6h0ifo0736.execute-api.us-east-1.amazonaws.com/dev/genommalab/supplychain/get-data-master-inventario/${provider.provider}`)
+      // .then( success => {
+      //   console.log(success)
+      // })
+      // .catch( error => console.log(error) )
     }
 
     const sendDataToMasterInventario = () => {
-      console.log("DONE")
+      axios.post("https://6h0ifo0736.execute-api.us-east-1.amazonaws.com/dev/genommalab/supplychain/add-data-master-inventario",
+      {SKUA,quantity,description,ID_provider,dataSize,provider})
+      .then( success => console.log(success)  )
+      .catch( error => console.log(error) )
     }
-
 
     return (
       <div>
@@ -55,8 +68,6 @@ export default function GenommaValidation (props) {
             {SKUA.map( s => <tr>{s}</tr> )}
           </tbody>
         </table>
-          
-      
       </div>
     )
 }
