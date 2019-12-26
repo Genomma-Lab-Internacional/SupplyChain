@@ -12,7 +12,7 @@ a{
 /*Navbar/////////////////////////*/
 
 Header{
-    font-size: 2rem;
+    font-size: 2.5rem;
     display: flex;
     justify-content: flex-end;
 }
@@ -48,6 +48,7 @@ footer ul li{
     display: flex;
     width: 40%;
     margin-top: 2%;
+    margin-left: 2%;
 }
 
 .Foot2{
@@ -111,13 +112,13 @@ footer ul li{
     display: flex;
     flex-direction: row;
     align-items: center;
-    height:60%;
-    padding: 5%;
+    height:35vh;
+    padding: 3%;
     width: 50%;
     background-color: rgb(226, 226, 226);
     border-radius: 25px;
-    margin-top: 2%;
-    border: 15px solid rgba(20, 31, 44, 0.651);
+    margin-left:50%;
+    border: 5px solid rgba(20, 31, 44, 0.651);
     justify-content:flex-end;
 }
 
@@ -126,27 +127,28 @@ footer ul li{
     width:10vw;
     background-color: rgb(255, 255, 255);
     border-radius: 50%;
+    margin: 2%;
 }
 .check{
     display: flex;
     flex-direction: column;
-    width:30%;
+    width:33%;
+    margin:1%;
     justify-content: center;
-    margin:2%;
 }
 .excel{
     display: flex;
     flex-direction: column;
-    width:30%;
+    width:33%;
     justify-content: center;
-    margin:2%;
+    margin:1%;
 }
 .upload{
     display: flex;
     flex-direction: column;
-    width:30%;
+    width:33%;
     justify-content: center;
-    margin:2%;
+    margin:1%;
 }
 .cont-3 img:hover{   
     opacity: 0.5;
@@ -222,6 +224,7 @@ button{
 /*///////Genomma validation*/
 .body-gen{
     font-family: 'Ropa Sans', sans-serif;
+    font-size: 2.5rem;
     margin: 1%;
     background-image: linear-gradient( rgb(204, 205, 207), rgb(221, 224, 235));
     height: 80vh;
@@ -229,15 +232,17 @@ button{
 }
 .cont-gen {
     width: 70%;
+    font-size: 1.5rem;
+    margin-top: 20%;
 }
 .cont-gen option{
     border-radius: 20px;
+    font-size: 1.5rem
 }
 .gen-img{
-    display: flex;
-    justify-content: flex-end;
     width: 50%;
-    margin-left:30vw;
+    margin-left:60vw;
+    margin-bottom: 20vh;
 }
 
 .body-gen h1{
