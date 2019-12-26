@@ -8,28 +8,35 @@ export default function GenommaValidation () {
   const [ description, setDescription ] = useState([])
   const [ ID_provider, setID_provider ] = useState([])
   const [ provider,setProvider ] = useState({})
-  const [ providerCreated_at, setProviderCreated_at ] = useState([])
+  const [ dataSize, setDataSize ] = useState([])
 
-    const selectProvider = (e) => {
-      provider[e.target.name] = e.target.value
-      axios.get(`https://6h0ifo0736.execute-api.us-east-1.amazonaws.com/dev/genommalab/supplychain/get-data-provider/${provider.provider}`)
-        .then( success => {
-          console.log(success)
-          for(let i=0; i<success.data.provider.length; i++) {
-            ID_provider.push(Object.values(success.data.provider[i])[0])
-            SKUA.push(Object.values(success.data.provider[i])[1])
-            description.push(Object.values(success.data.provider[i])[2])
-            quantity.push(Object.values(success.data.provider[i])[3])
-            providerCreated_at.push(Object.values(success.data.provider[i])[5])
-            // setSKUA([SKUA])
-          }
-        })
-        .catch( error => console.log(error) )
+  const selectProvider = (e) => {
+    provider[e.target.name] = e.target.value
+    axios.get(`https://6h0ifo0736.execute-api.us-east-1.amazonaws.com/dev/genommalab/supplychain/get-data-provider/${provider.provider}`)
+      .then( success => {
+        console.log(success)
+        for(let i=0; i<success.data.provider.length; i++) {
+          ID_provider.push(Object.values(success.data.provider[i])[0])
+          SKUA.push(Object.values(success.data.provider[i])[1])
+          description.push(Object.values(success.data.provider[i])[2])
+          quantity.push(Object.values(success.data.provider[i])[3])
+          // setSKUA([SKUA])
+        }
+        dataSize.push(success.data.provider.length)
+        console.log(dataSize,provider)
+      })
+      .catch( error => console.log(error) )
+      
+      // axios.get(`https://6h0ifo0736.execute-api.us-east-1.amazonaws.com/dev/genommalab/supplychain/get-data-master-inventario/${provider.provider}`)
+      // .then( success => {
+      //   console.log(success)
+      // })
+      // .catch( error => console.log(error) )
     }
 
     const sendDataToMasterInventario = () => {
       axios.post("https://6h0ifo0736.execute-api.us-east-1.amazonaws.com/dev/genommalab/supplychain/add-data-master-inventario",
-      {SKUA,quantity,description,ID_provider,provider,providerCreated_at})
+      {SKUA,quantity,description,ID_provider,dataSize,provider})
       .then( success => console.log(success)  )
       .catch( error => console.log(error) )
     }
