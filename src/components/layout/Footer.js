@@ -3,30 +3,44 @@ import {Link} from 'react-router-dom';
 import '../layout/layout.css'
 import 'antd/dist/antd.css';
 import { Modal, Button, Input} from 'antd';
+import axios from "axios"
 
 
 class Footer extends React.Component{
-        state = { visible: false }
+  state = { 
+    visible: false,
+    data:{
+      name:"",
+      email:"",
+      comments:""
+    }
+  }
 
-        showModal = () => {
-          this.setState({
-            visible: true,
-          });
-        }
-      
-        handleOk = e => {
-          console.log(e);
-          this.setState({
-            visible: false,
-          });
-        }
-      
-        handleCancel = e => {
-          console.log(e);
-          this.setState({
-            visible: false,
-          });
-        }
+  showModal = (e) => {
+    let {data} = this.state
+    data[e.target.name] = e.target.value
+    this.setState({
+      visible: true,
+      data
+    });
+    console.log(this.state)
+  }
+
+  handleOk = () => {
+    this.setState({
+      visible: false,
+    });
+    axios.post("https://6h0ifo0736.execute-api.us-east-1.amazonaws.com/dev/genommalab/supplychain/contact-us",this.state.data)
+      .then( success => console.log(success) )
+      .catch( error => console.log(error))
+  }
+
+  handleCancel = e => {
+    console.log(e);
+    this.setState({
+      visible: false,
+    });
+  }
 
 render(){
     return (
@@ -40,15 +54,15 @@ render(){
                     <Button className="btn" style={{"color": "white"}} onClick={this.showModal} type="link">Contáctanos</Button> 
                         <Modal
                         title="Envía tus datos y nos pondremos en contacto contigo:"
-                        visible={this.state.visiblevisible}
+                        visible={this.state.visible}
                         onOk={this.handleOk}
                         onCancel={this.handleCancel}>
                         <p>Nombre</p>
-                        <Input/>
+                        <Input onChange={this.showModal} type="text" name="name"/>
                         <p>Correo electrónico</p>
-                        <Input/>
-                        <p>Comentarios:</p>
-                        <Input></Input>
+                        <Input onChange={this.showModal} type="email" name="email"/>
+                        <p>Comentarios: </p>
+                        <Input onChange={this.showModal} type="text" name="comments"/>
                         </Modal>
                     </li>
                     <li><a href="/">Aviso de privacidad</a></li>

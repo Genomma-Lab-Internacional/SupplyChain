@@ -1,5 +1,7 @@
 'use strict';
+const AWS = require('aws-sdk'); 
 const connection = require ("./connection")
+AWS.config.update({region: 'us-east-1'});
 
 module.exports.GetDataMasterInventario = (event,context,callback) => {
   context.callbackWaitsForEmptyEventLoop = false
@@ -133,3 +135,50 @@ module.exports.AddDataMasterInventario = (event,context,callback) => {
     }
   });
 }
+
+module.exports.ContactUs = (event, context, callback) => {
+  console.log(event)
+  console.log(event.name,event.email)
+
+var params = {
+  Destination: { 
+    CcAddresses: [
+      'carlos.ortiz@genommalab.com','daniela.lopez@genommalab.com'
+    ],
+    ToAddresses: [
+      'ca.ortiz.pacheco@gmail.com',
+    ]
+  },
+  Message: { 
+    Body: {
+      Html: {
+      Charset: "UTF-8",
+      Data: "This message body contains HTML formatting. It can, for example, contain links like this one: <a class=\"ulink\" href=\"http://docs.aws.amazon.com/ses/latest/DeveloperGuide\" target=\"_blank\">Amazon SES Developer Guide</a>."
+      },
+      Text: {
+      Charset: "UTF-8",
+      Data: event.comments
+      }
+     },
+     Subject: {
+      Charset: 'UTF-8',
+      Data: 'Supply Chain Contact Us'
+     }
+    },
+  Source: event.email,
+  ReplyToAddresses: [
+     event.email,
+  ],
+};
+
+var sendPromise = new AWS.SES({apiVersion: '2010-12-01'}).sendEmail(params).promise();
+
+sendPromise
+  .then( data => {
+      console.log(data.MessageId);
+  })
+  .catch( err => {
+    console.error(err, err.stack);
+  });
+};
+

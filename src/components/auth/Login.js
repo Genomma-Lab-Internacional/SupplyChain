@@ -9,7 +9,7 @@ export default function Login (props) {
 
 	const verifyUser = () => {
 		switch(`${user.username}_${user.password}`) {
-			case "Albek_albek123":
+			case "Albek_4lb3k_H8D3V":
 				props.history.push(`/adddataprovider/${user.username}`)
 				break
 			case "GenommaLab_GenommaLab123":

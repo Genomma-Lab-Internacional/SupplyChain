@@ -1,5 +1,8 @@
 service: serverless
 
+package:
+  exclude: 
+    - node_modules/**
 
 provider:
   name: aws
@@ -20,8 +23,9 @@ functions:
     handler: handler.GetDataMasterInventario
     events:
       - http:
-          path: genommalab/supplychain/getalldatatransactions
+          path: genommalab/supplychain/get-data-master-inventario/{provider}
           method: get
+          cors: true
   AddDataProvider:
     handler: handler.AddDataProvider
     events:
@@ -41,4 +45,13 @@ functions:
     events:
       - http:
           path: genommalab/supplychain/add-data-master-inventario
+          method: post
+          cors: true
+  ContactUs:
+    handler: handler.ContactUs
+    events:
+      - http:
+          path: genommalab/supplychain/contact-us
+          method: post
+          cors: true
 
