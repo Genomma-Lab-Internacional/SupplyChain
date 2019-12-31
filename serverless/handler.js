@@ -137,13 +137,13 @@ module.exports.AddDataMasterInventario = (event,context,callback) => {
 }
 
 module.exports.ContactUs = (event, context, callback) => {
-  console.log(event)
-  console.log(event.name,event.email)
+  let body = JSON.parse(event.body)
+  console.log(body)
 
 var params = {
   Destination: { 
     CcAddresses: [
-      'carlos.ortiz@genommalab.com','daniela.lopez@genommalab.com'
+      // 'carlos.ortiz@genommalab.com','daniela.lopez@genommalab.com'
     ],
     ToAddresses: [
       'ca.ortiz.pacheco@gmail.com',
@@ -153,11 +153,11 @@ var params = {
     Body: {
       Html: {
       Charset: "UTF-8",
-      Data: "This message body contains HTML formatting. It can, for example, contain links like this one: <a class=\"ulink\" href=\"http://docs.aws.amazon.com/ses/latest/DeveloperGuide\" target=\"_blank\">Amazon SES Developer Guide</a>."
+      Data: body.comments
       },
       Text: {
       Charset: "UTF-8",
-      Data: event.comments
+      Data: body.comments
       }
      },
      Subject: {
@@ -165,9 +165,9 @@ var params = {
       Data: 'Supply Chain Contact Us'
      }
     },
-  Source: event.email,
+  Source: body.email,
   ReplyToAddresses: [
-     event.email,
+     body.email,
   ],
 };
 
@@ -175,10 +175,22 @@ var sendPromise = new AWS.SES({apiVersion: '2010-12-01'}).sendEmail(params).prom
 
 sendPromise
   .then( data => {
-      console.log(data.MessageId);
+    callback(null,{
+      statusCode:200,
+      body:JSON.stringify(data.MessageId),
+      headers:{
+        "Access-Control-Allow-Origin":"*"
+      }
+    });
   })
   .catch( err => {
-    console.error(err, err.stack);
+    callback({
+      statusCode:500,
+      body:JSON.stringify(err),
+      headers:{
+        "Access-Control-Allow-Origin":"*"
+      }
+    });
   });
 };
 
