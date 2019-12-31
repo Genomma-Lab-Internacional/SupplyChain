@@ -7,27 +7,27 @@ module.exports.GetDataMasterInventario = (event,context,callback) => {
   context.callbackWaitsForEmptyEventLoop = false
   const body = JSON.parse(event.body);
   console.log(body)
-  console.log(event)
+  
   const query = `SELECT COUNT(ID_${body.provider["provider"]} FROM MasterInventory`
-  // connection.query(query,(error,rows) => {
-  //   if(error) {
-  //     callback({
-  //       statusCode:500,
-  //       body:JSON.stringify(error),
-  //       headers:{
-  //         "Access-Control-Allow-Origin":"*"
-  //       }
-  //     })
-  //   } else {
-  //     callback(null,{
-  //       statusCode:200,
-  //       body:JSON.stringify({ Master:rows }),
-  //       headers:{
-  //         "Access-Control-Allow-Origin":"*"
-  //       }
-  //     })
-  //   }
-  // })
+  connection.query(query,(error,rows) => {
+    if(error) {
+      callback({
+        statusCode:500,
+        body:JSON.stringify(error),
+        headers:{
+          "Access-Control-Allow-Origin":"*"
+        }
+      })
+    } else {
+      callback(null,{
+        statusCode:200,
+        body:JSON.stringify({ Master:rows }),
+        headers:{
+          "Access-Control-Allow-Origin":"*"
+        }
+      })
+    }
+  })
 }
 
 
@@ -62,8 +62,6 @@ module.exports.AddDataProvider = (event,context,callback) => {
     }
   });
 }
-
-
 
 module.exports.GetDataProvider = (event,context,callback) => {
   context.callbackWaitsForEmptyEventLoop = false

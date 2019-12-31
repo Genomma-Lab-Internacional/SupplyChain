@@ -3,7 +3,7 @@ import axios from 'axios'
 import readExcel from "read-excel-file"
 import {Link} from 'react-router-dom'
 import 'antd/dist/antd.css';
-import {Menu, Layout, Button, Content,Dropdown, Icon, message, Input} from 'antd';
+import {Menu, Layout, Button, Content,Dropdown, Icon, message, Input, Result} from 'antd';
 
 const menu = (
 	<Menu style={{"width":"10vw"}} name="Company name">
