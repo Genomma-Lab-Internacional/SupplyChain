@@ -1,9 +1,5 @@
 service: serverless
 
-package:
-  exclude: 
-    - node_modules/**
-
 provider:
   name: aws
   runtime: nodejs12.x
@@ -16,6 +12,12 @@ provider:
     subnetsIds:
       - subnet-e2a134dc
       - subnet-4b317317
+  environment:
+    host: genommalab.cgkb305m9bb6.us-east-1.rds.amazonaws.com
+    user: admin
+    password: G3n0mm4L4b
+    port: 3306
+    database: supplychain
   
 
 functions:

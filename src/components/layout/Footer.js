@@ -30,9 +30,10 @@ class Footer extends React.Component{
     this.setState({
       visible: false,
     });
+    
     axios.post("https://6h0ifo0736.execute-api.us-east-1.amazonaws.com/dev/genommalab/supplychain/contact-us",this.state.data)
       .then( success => console.log(success) )
-      .catch( error => console.log(error))
+      .catch( error => console.log(error) )
   }
 
   handleCancel = e => {

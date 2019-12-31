@@ -30,7 +30,6 @@ module.exports.GetDataMasterInventario = (event,context,callback) => {
   })
 }
 
-
 module.exports.AddDataProvider = (event,context,callback) => {
   context.callbackWaitsForEmptyEventLoop = false;
   

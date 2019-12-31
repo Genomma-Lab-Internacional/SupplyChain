@@ -1,12 +1,12 @@
 const mysql = require ("mysql")
 
 const configDB = {
-    host:"database-2.c7hvarht589f.us-east-1.rds.amazonaws.com",
-    user:"root",
-    password:"29041985Root",
-    port:"3306",
-    database:"HacheOchoDatabaseName",
-    debug:true
+    host: process.env.host,
+    user: process.env.user,
+    password: process.env.password,
+    port: process.env.port,
+    database: process.env.database,
+    debug: true
 }
 
 function initializeConnection(config) {

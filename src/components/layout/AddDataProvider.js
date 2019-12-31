@@ -3,7 +3,7 @@ import axios from 'axios'
 import readExcel from "read-excel-file"
 import {Link} from 'react-router-dom'
 import 'antd/dist/antd.css';
-import {Menu, Layout, Button, Content,Dropdown, Icon, message, Input, Result} from 'antd';
+import {Menu, Layout, Button, Content,Dropdown, Icon, message, Input, Modal} from 'antd';
 
 const menu = (
 	<Menu style={{"width":"10vw"}} name="Company name">
@@ -18,20 +18,20 @@ const menu = (
 
 export default function AddDataProvider (props) {
 	const [data,SetData] = useState({approved:false}) 
-	const [visible, setVisible] = useState(false)
+	
+	const info = () => {
+		Modal.info({
+			title: 'Tu archivo se subio correctamente',
+			content: (
+				<div>
+					<p>Tu archivo se subio correctamente</p>
+				</div>
+			),
+			onOk() {},
+		});
+	}
 
-	const showModal = (e) => {
-    console.log(e);
-    setVisible(true)
-}
-	const handleOk = e => {
-    console.log(e);
-    setVisible(false)
-  }
-	const handleCancel = e => {
-    console.log(e);
-    setVisible(false)
-  }
+
 
 	const uploadFile = (e) => {
 		data["providerFile"] = e.target.files[0]
@@ -50,7 +50,10 @@ export default function AddDataProvider (props) {
 	const sendDataToServer = () => {
     console.log(data)
 		axios.post("https://6h0ifo0736.execute-api.us-east-1.amazonaws.com/dev/genommalab/supplychain/add-data-provider",data)
-			.then( success =>	console.log(success) )
+			.then( success =>	{
+				console.log(success)
+				info()
+			})
 			.catch( error => console.log(error) )
 	}
 
