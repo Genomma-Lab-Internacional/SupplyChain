@@ -50,8 +50,7 @@ render(){
                 <h4><a href="https://genommalab.com/mx/">Genomma Lab© 2019</a></h4>
             </div>
             <div className="Foot2">
-                <ul>
-                    <li>
+                    <h4>
                     <Button className="btn" style={{"color": "white"}} onClick={this.showModal} type="link">Contáctanos</Button> 
                         <Modal
                         title="Envía tus datos y nos pondremos en contacto contigo:"
@@ -65,8 +64,7 @@ render(){
                         <p>Comentarios: </p>
                         <Input onChange={this.showModal} type="text" name="comments"/>
                         </Modal>
-                    </li>
-                </ul>
+                    </h4>
             </div>    
                 
         </footer>
