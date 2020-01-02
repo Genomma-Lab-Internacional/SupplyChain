@@ -60,7 +60,7 @@ export default function FAQS(){
             
             <div className="foot-faq">
                 <p>¿No encontraste lo que buscabas?</p>
-            <Button type="link">Envíanos un correo aquí</Button>
+            <p>Envíanos tus preguntas a través de nuestro contacto y te responderemos a la brevedad.</p>
             </div>
             
             </div>

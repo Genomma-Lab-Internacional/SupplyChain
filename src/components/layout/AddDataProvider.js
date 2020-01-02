@@ -21,7 +21,7 @@ export default function AddDataProvider (props) {
 	
 	const infoSuccess = () => {
 		Modal.info({
-			title: 'Tu archivo se subio correctamente',
+			title: 'Tu archivo se subió correctamente',
 			content: (
 				<div>
 					<p>Gracias!</p>
@@ -33,7 +33,7 @@ export default function AddDataProvider (props) {
 
 	const infoError = () => {
 		Modal.info({
-			title: 'Tu archivo NO se subio correctamente',
+			title: 'Tu archivo NO se subió correctamente',
 			content: (
 				<div>
 					<p>Verifica que los datos de las columnas esten correctos.</p>

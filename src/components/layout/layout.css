@@ -191,8 +191,9 @@ footer ul li{
 }
 .foot-faq{
     background-image: url('../assets/chemistry-306979_960_720.png');
-    margin: 5vw;
-    background-size:30vh;
+    margin: 3vw;
+    padding: 5vh;
+    background-size:35vh;
     background-position: right bottom;
     background-repeat: no-repeat;
     display: flex;
