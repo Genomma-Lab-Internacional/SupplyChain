@@ -1,5 +1,7 @@
 service: serverless
 
+plugins:
+  - serverless-plugin-include-dependencies
 
 provider:
   name: aws
@@ -13,6 +15,12 @@ provider:
     subnetsIds:
       - subnet-e2a134dc
       - subnet-4b317317
+  environment:
+    host: genommalab.cgkb305m9bb6.us-east-1.rds.amazonaws.com
+    user: admin
+    password: G3n0mm4L4b
+    port: 3306
+    database: supplychain
   
 
 functions:
@@ -20,8 +28,9 @@ functions:
     handler: handler.GetDataMasterInventario
     events:
       - http:
-          path: genommalab/supplychain/getalldatatransactions
+          path: genommalab/supplychain/get-data-master-inventario/{provider}
           method: get
+          cors: true
   AddDataProvider:
     handler: handler.AddDataProvider
     events:
@@ -41,4 +50,13 @@ functions:
     events:
       - http:
           path: genommalab/supplychain/add-data-master-inventario
+          method: post
+          cors: true
+  ContactUs:
+    handler: handler.ContactUs
+    events:
+      - http:
+          path: genommalab/supplychain/contact-us
+          method: post
+          cors: true
 

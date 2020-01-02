@@ -23,7 +23,7 @@ export default function Login (props) {
 	return(
 		<section className="login">
 			<div className="cont-login">
-				<img alt="avatar" src={require("../assets/avatar3.png")}/>
+				<img alt="avatar" src={"https://genommalab-supplychain.s3.amazonaws.com/images/avatar_login.png"}/>
 				<input onChange={inputData} type="text" name="username" placeholder="Nombre de Usuario"/>
 				<br/>
 				<input onChange={inputData} type="password" name="password" placeholder="Contraseña"/>

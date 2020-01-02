@@ -1,33 +1,34 @@
 'use strict';
+const AWS = require('aws-sdk'); 
 const connection = require ("./connection")
+AWS.config.update({region: 'us-east-1'});
 
 module.exports.GetDataMasterInventario = (event,context,callback) => {
   context.callbackWaitsForEmptyEventLoop = false
   const body = JSON.parse(event.body);
   console.log(body)
-  console.log(event)
+  
   const query = `SELECT COUNT(ID_${body.provider["provider"]} FROM MasterInventory`
-  // connection.query(query,(error,rows) => {
-  //   if(error) {
-  //     callback({
-  //       statusCode:500,
-  //       body:JSON.stringify(error),
-  //       headers:{
-  //         "Access-Control-Allow-Origin":"*"
-  //       }
-  //     })
-  //   } else {
-  //     callback(null,{
-  //       statusCode:200,
-  //       body:JSON.stringify({ Master:rows }),
-  //       headers:{
-  //         "Access-Control-Allow-Origin":"*"
-  //       }
-  //     })
-  //   }
-  // })
+  connection.query(query,(error,rows) => {
+    if(error) {
+      callback({
+        statusCode:500,
+        body:JSON.stringify(error),
+        headers:{
+          "Access-Control-Allow-Origin":"*"
+        }
+      })
+    } else {
+      callback(null,{
+        statusCode:200,
+        body:JSON.stringify({ Master:rows }),
+        headers:{
+          "Access-Control-Allow-Origin":"*"
+        }
+      })
+    }
+  })
 }
-
 
 module.exports.AddDataProvider = (event,context,callback) => {
   context.callbackWaitsForEmptyEventLoop = false;
@@ -60,8 +61,6 @@ module.exports.AddDataProvider = (event,context,callback) => {
     }
   });
 }
-
-
 
 module.exports.GetDataProvider = (event,context,callback) => {
   context.callbackWaitsForEmptyEventLoop = false
@@ -133,3 +132,62 @@ module.exports.AddDataMasterInventario = (event,context,callback) => {
     }
   });
 }
+
+module.exports.ContactUs = (event, context, callback) => {
+  let body = JSON.parse(event.body)
+  console.log(body)
+
+var params = {
+  Destination: { 
+    CcAddresses: [
+      // 'carlos.ortiz@genommalab.com','daniela.lopez@genommalab.com'
+    ],
+    ToAddresses: [
+      'ca.ortiz.pacheco@gmail.com',
+    ]
+  },
+  Message: { 
+    Body: {
+      Html: {
+      Charset: "UTF-8",
+      Data: body.comments
+      },
+      Text: {
+      Charset: "UTF-8",
+      Data: body.comments
+      }
+     },
+     Subject: {
+      Charset: 'UTF-8',
+      Data: 'Supply Chain Contact Us'
+     }
+    },
+  Source: body.email,
+  ReplyToAddresses: [
+     body.email,
+  ],
+};
+
+var sendPromise = new AWS.SES({apiVersion: '2010-12-01'}).sendEmail(params).promise();
+
+sendPromise
+  .then( data => {
+    callback(null,{
+      statusCode:200,
+      body:JSON.stringify(data.MessageId),
+      headers:{
+        "Access-Control-Allow-Origin":"*"
+      }
+    });
+  })
+  .catch( err => {
+    callback({
+      statusCode:500,
+      body:JSON.stringify(err),
+      headers:{
+        "Access-Control-Allow-Origin":"*"
+      }
+    });
+  });
+};
+

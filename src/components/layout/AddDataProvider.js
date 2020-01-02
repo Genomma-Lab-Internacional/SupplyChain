@@ -3,7 +3,7 @@ import axios from 'axios'
 import readExcel from "read-excel-file"
 import {Link} from 'react-router-dom'
 import 'antd/dist/antd.css';
-import {Menu, Layout, Button, Content,Dropdown, Icon, message, Input} from 'antd';
+import {Menu, Layout, Button, Content,Dropdown, Icon, message, Input, Modal} from 'antd';
 
 const menu = (
 	<Menu style={{"width":"10vw"}} name="Company name">
@@ -18,20 +18,30 @@ const menu = (
 
 export default function AddDataProvider (props) {
 	const [data,SetData] = useState({approved:false}) 
-	const [visible, setVisible] = useState(false)
+	
+	const infoSuccess = () => {
+		Modal.info({
+			title: 'Tu archivo se subio correctamente',
+			content: (
+				<div>
+					<p>Gracias!</p>
+				</div>
+			),
+			onOk() {},
+		});
+	}
 
-	const showModal = (e) => {
-    console.log(e);
-    setVisible(true)
-}
-	const handleOk = e => {
-    console.log(e);
-    setVisible(false)
-  }
-	const handleCancel = e => {
-    console.log(e);
-    setVisible(false)
-  }
+	const infoError = () => {
+		Modal.info({
+			title: 'Tu archivo NO se subio correctamente',
+			content: (
+				<div>
+					<p>Verifica que los datos de las columnas esten correctos.</p>
+				</div>
+			),
+			onOk() {},
+		});
+	}
 
 	const uploadFile = (e) => {
 		data["providerFile"] = e.target.files[0]
@@ -43,15 +53,21 @@ export default function AddDataProvider (props) {
         console.log(data.table)
         SetData(data)
       })
-    	.catch(e => console.log(e))
+    	.catch(e => console.log(e) )
     }
     
  
 	const sendDataToServer = () => {
     console.log(data)
 		axios.post("https://6h0ifo0736.execute-api.us-east-1.amazonaws.com/dev/genommalab/supplychain/add-data-provider",data)
-			.then( success =>	console.log(success) )
-			.catch( error => console.log(error) )
+			.then( success =>	{
+				console.log(success)
+				infoSuccess()
+			})
+			.catch( error => {
+				console.log(error)
+				infoError()
+			 })
 	}
 	
 
@@ -72,7 +88,7 @@ export default function AddDataProvider (props) {
 					<div className="cont-2">
 						<p>Los archivos deben cargarse en formato .xlsx.
         				<br/>
-       				 	Para descargar una guía del formato en el que debes cargar tus archivos da click<a style={{"color": "blue"}} href="/" download> aquí</a></p>
+       				 	Para descargar una guía del formato en el que debes cargar tus archivos da click<a style={{"color": "blue"}} href="https://genommalab-supplychain.s3.amazonaws.com/images/InventarioEjemplo.xlsx" download> aquí</a></p>
         			</div>
         			</section>
 					<div className="cont-3">
