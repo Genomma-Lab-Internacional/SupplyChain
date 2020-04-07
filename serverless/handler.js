@@ -139,11 +139,9 @@ module.exports.ContactUs = (event, context, callback) => {
 
 var params = {
   Destination: { 
-    CcAddresses: [
-      // 'carlos.ortiz@genommalab.com','daniela.lopez@genommalab.com'
-    ],
+    CcAddresses: [],
     ToAddresses: [
-      'ca.ortiz.pacheco@gmail.com',
+      'carlos.ortiz@genommalab.com','daniela.lopez@genommalab.com',
     ]
   },
   Message: { 

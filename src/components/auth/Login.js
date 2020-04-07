@@ -12,10 +12,17 @@ export default function Login (props) {
 			case "Albek_4lb3k_H8D3V":
 				props.history.push(`/adddataprovider/${user.username}`)
 				break
+			case "SIE_S13_4ch38Ch8d3Vg3n0MM4":
+				props.history.push(`/adddataprovider/${user.username}`)
+				break
+			case "Botanicals_B0t4n1c4ls_G3n0mM4l4Bh8cH8":
+				props.history.push(`/adddataprovider/${user.username}`)
+				break
 			case "GenommaLab_GenommaLab123":
 				props.history.push("/genommavalidation")
 				break
 			default:
+				alert("Contraseña y/o usuario incorrecto")
 				break
 		}
 	}
