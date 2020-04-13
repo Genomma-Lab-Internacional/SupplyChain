@@ -1,6 +1,6 @@
 import React, {useState} from "react"
 import axios from "axios"
-import { Table, Divider, Tag, Button} from 'antd';
+import { Table, Divider, Tag, Button, message} from 'antd';
 
 export default function GenommaValidation () {
   const [ SKUA, setSKUA ] = useState([])
@@ -15,6 +15,7 @@ export default function GenommaValidation () {
     axios.get(`https://6h0ifo0736.execute-api.us-east-1.amazonaws.com/dev/genommalab/supplychain/get-data-provider/${provider.provider}`)
       .then( success => {
         console.log(success)
+        message.success('This is a success message')
         for(let i=0; i<success.data.provider.length; i++) {
           ID_provider.push(Object.values(success.data.provider[i])[0])
           SKUA.push(Object.values(success.data.provider[i])[1])
@@ -25,21 +26,34 @@ export default function GenommaValidation () {
         dataSize.push(success.data.provider.length)
         console.log(dataSize,provider)
       })
-      .catch( error => console.log(error) )
-      
+      .catch( error => console.log(error),
+      message.error('This is an error message') )
+
       // axios.get(`https://6h0ifo0736.execute-api.us-east-1.amazonaws.com/dev/genommalab/supplychain/get-data-master-inventario/${provider.provider}`)
       // .then( success => {
       //   console.log(success)
       // })
       // .catch( error => console.log(error) )
     }
+    // const success = () => {
+    //   message.success('This is a success message');
+    // };
+    // const error = () => {
+    //   message.error('This is an error message');
+    // };
 
     const sendDataToMasterInventario = () => {
       axios.post("https://6h0ifo0736.execute-api.us-east-1.amazonaws.com/dev/genommalab/supplychain/add-data-master-inventario",
       {SKUA,quantity,description,ID_provider,dataSize,provider})
-      .then( success => console.log(success)  )
-      .catch( error => console.log(error) )
+      .then( success =>
+        console.log(success)
+      )
+      .catch( error => 
+        console.log(error) 
+        )
     }
+
+    
 
     return (
       <div>

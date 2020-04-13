@@ -45,22 +45,22 @@ export default function FAQS(){
                         bordered={false}
                         defaultActiveKey={['1']}
                         expandIcon={({ isActive }) => <Icon type="caret-right" rotate={isActive ? 90 : 0} />}>
-                    <Panel header="Pregunta número 1" key="1" style={customPanelStyle}>
-                    <p>{text}</p>
+                    <Panel header="¿Qué formato acepta la plataforma?" key="1" style={customPanelStyle}>
+                    <p>La plataforma ÚNICAMENTE acepta formato Microsoft Office Excel (.xlsx)</p>
                     </Panel>
-                    <Panel header="Pregunta número 2" key="2" style={customPanelStyle}>
-                    <p>{text}</p>
+                    <Panel header="¿Por qué no me deja subir el archivo?" key="2" style={customPanelStyle}>
+                    <p>La causa más común es que alguno de los campos en tu archivo Excel no coincida con los campos predefinidos de la plantilla. De igual forma recuerda verificar que los SKUA sean los definidos por Genomma.</p>
                     </Panel>
-                    <Panel header="Pregunta número 3" key="3" style={customPanelStyle}>
-                    <p>{text}</p>
+                    <Panel header="¿Cada cuánto tiempo se tiene que cargar el inventario en la plataforma?" key="3" style={customPanelStyle}>
+                    <p>Tiene que cargarse todos los lunes antes de las 12:00 pm. </p>
                     </Panel>
                    
                     </Collapse>
                 </section>
             
             <div className="foot-faq">
-            <p>¿No encontraste lo que buscabas?</p>
-            <Button type="link">Contáctanos</Button>
+                <p>¿No encontraste lo que buscabas?</p>
+            <p>Envíanos tus preguntas a través de nuestro contacto y te responderemos a la brevedad.</p>
             </div>
             
             </div>
