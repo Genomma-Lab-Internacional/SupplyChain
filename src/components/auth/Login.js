@@ -24,6 +24,12 @@ export default function Login (props) {
 			case "Francobel_Fr4nC0b3Lh88Ch8G3N0MM4L4b8":
 				props.history.push(`/adddataprovider/${user.username}`)
 				break
+			case "CandG_Ce&andGih88Ch8G3N0MM4L4b8":
+				props.history.push(`/adddataprovider/${user.username}`)
+				break
+			case "Test_Test":
+				props.history.push(`/adddataprovider/${user.username}`)
+				break
 			case "GenommaLab_GenommaLab123":
 				props.history.push("/genommavalidation")
 				break

@@ -12,53 +12,18 @@ export default function AddDataProvider (props) {
 	const [data,SetData] = useState({approved:false})
 	const [parameters,setParameters] = useState({button:true})
 
-	const uploadFile = e => {
+	const uploadFile = (e) => {
 		data["providerFile"] = e.target.files[0]
 		readExcel(e.target.files[0])
 			.then( rows => {
         data["provider"] = props.match.params.provider
         data["table"] = rows
         data["approved"] = true
-				data.table.map( d => {
-					for(let i=0;i<SKUAGenomma.length;i++) {
-						if( d[0] == SKUAGenomma[i] ) {
-							datafilter.push(d)
-						}
-					}
-				})
-				console.log("datafilter",datafilter,datafilter.length)
-				console.log("datatable",data.table,data.table.length)
-				
-				if( data.table.length === datafilter.length) {
-					Modal.info({
-						title: 'Códigos SKUA verificados correctamente.',
-						content: (
-							<div>
-								<p>Da clic en el botón "Enviar a Genomma", para terminar la carga.</p>
-							</div>
-						),
-						onOk() {
-							setParameters({button:false})
-							SetData(data)
-						}
-					})
-				
-				} else {
-					data["providerFile"] = ""
-					setParameters({button:true})
-					Modal.info({
-						title: 'Lo sentimos alguno(s) código(s) SKUA no estan correctos.',
-						content: (
-							<div>
-								<p>Descarga el archivo excel con los códigos SKUA oficiales de GenommaLab</p>
-							</div>
-						),
-						onOk() {},
-					})
-				}
+        console.log(data.table)
+        SetData(data)
       })
     	.catch(e => console.log(e) )
-  }
+    }
     
  
 	const sendDataToServer = () => {
@@ -101,7 +66,8 @@ export default function AddDataProvider (props) {
 						<h3>Sube tus archivos de excel</h3>
 						<input id="file" onChange={uploadFile} type="file" name="file"/>
 						<br/>
-						<Button type="default" style={{"width": "40%"}} onClick={sendDataToServer} disabled={parameters.button}>Enviar a Genomma</Button>
+						{/* <Button type="default" style={{"width": "40%"}} onClick={sendDataToServer} disabled={parameters.button}>Enviar a Genomma</Button> */}
+						<Button type="default" style={{"width": "40%"}} onClick={sendDataToServer}>Enviar a Genomma</Button>
 					</div>
 					<div className="cont-2">
 						<p>
