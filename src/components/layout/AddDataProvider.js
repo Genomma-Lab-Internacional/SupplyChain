@@ -6,7 +6,7 @@ import {Link} from 'react-router-dom'
 import 'antd/dist/antd.css';
 import {Menu, Layout, Button, Content,Dropdown, Icon, message, Input, Modal,Spin,Alert} from 'antd';
 
-let datafilter= [["SKUA","descripcion","cantidad"]]
+let datafilter= [["SKUA","descripcion","cantidad"]]	
 
 export default function AddDataProvider (props) {
 	const [data,SetData] = useState({approved:false})
