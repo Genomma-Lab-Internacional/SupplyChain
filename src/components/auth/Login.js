@@ -33,6 +33,12 @@ export default function Login (props) {
 			case "EstiloYVanidad_3st1l01V4N1D4D%4CH38":
 				props.history.push(`/adddataprovider/${user.username}`)
 				break
+			case "AAACosmetica_444C0sM3t1c4g3nn0M4LABh8":
+				props.history.push(`/adddataprovider/${user.username}`)
+				break
+			case "Saroma_h4ch3ocH0S4roM4G3nnoM4LAB":
+				props.history.push(`/adddataprovider/${user.username}`)
+				break
 			case "Test_Test":
 				props.history.push(`/adddataprovider/${user.username}`)
 				break

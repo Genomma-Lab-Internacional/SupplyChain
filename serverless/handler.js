@@ -40,26 +40,86 @@ module.exports.AddDataProvider = (event,context,callback) => {
   for (let i=1; i<body.table.length; i++) {
     values.push([body.table[i][0],body.table[i][1],body.table[i][2],body.provider])
   }
-  
+
   connection.query(insert,[values],(error,rows) => {
     if(error) {
-      callback({
-        statusCode:500,
-        body:JSON.stringify(error),
-        headers:{
-          "Access-Control-Allow-Origin":"*"
-        }
-      });
+      let params = {
+        Destination: { 
+          CcAddresses: ["carlos.ortiz@genommalab.com"],
+          ToAddresses: ["mario.lopez@genommalab.com"]
+        },
+        Message: { 
+          Body: {
+            Html: {
+            Charset: "UTF-8",
+            Data: `${body.provider} ha subido su inventario correctamente`
+            },
+            Text: {
+            Charset: "UTF-8",
+            Data: `${body.provider} ha subido su inventario correctamente`
+            }
+          },
+          Subject: {
+            Charset: 'UTF-8',
+            Data: `${body.provider} ha subido su inventario`
+          }
+          },
+        Source: body.email,
+        ReplyToAddresses: [
+          body.email,
+        ],
+      }
+      let sendPromise = new AWS.SES({apiVersion: '2010-12-01'}).sendEmail(params).promise()
+      sendPromise
+        .then( d => {
+          console.log(d)
+          callback({
+            statusCode:500,
+            body:JSON.stringify(error),
+            headers:{
+              "Access-Control-Allow-Origin":"*"
+            }
+          })
+        })
+        .catch( e => console.log(e) )
+     
     } else {
+      let params = {
+        Destination: { 
+          CcAddresses: ["mario.lopez@genommalab.com","adrian.cruz@genommalab.com","daniela.lopez@genommalab.com"],
+          ToAddresses: ["carlos.ortiz@genommalab.com"]
+        },
+        Message: { 
+          Body: {
+            Html: {
+              Charset: "UTF-8",
+              Data: `${body.provider} no ha podido subir su inventario`
+            },
+            Text: {
+              Charset: "UTF-8",
+              Data: `${body.provider} no ha podido subir su inventario`
+            }
+          },
+          Subject: {
+            Charset: 'UTF-8',
+            Data: `ERROR al subir el inventario de ${body.provider}`
+          }
+        },
+        Source: "mario.lopez@genommalab.com",
+      }
+      let sendPromise = new AWS.SES({apiVersion: '2010-12-01'}).sendEmail(params).promise()
+      sendPromise
+        .then( d => console.log(d) )
+        .catch( e => console.log(e) )
       callback(null,{
         statusCode:200,
         body:JSON.stringify(body.table),
         headers:{
           "Access-Control-Allow-Origin":"*"
         }
-      });
+      })
     }
-  });
+  })
 }
 
 module.exports.GetDataProvider = (event,context,callback) => {
@@ -137,55 +197,55 @@ module.exports.ContactUs = (event, context, callback) => {
   let body = JSON.parse(event.body)
   console.log(body)
 
-var params = {
-  Destination: { 
-    CcAddresses: [],
-    ToAddresses: [
-      'carlos.ortiz@genommalab.com','daniela.lopez@genommalab.com',
-    ]
-  },
-  Message: { 
-    Body: {
-      Html: {
-      Charset: "UTF-8",
-      Data: body.comments
-      },
-      Text: {
-      Charset: "UTF-8",
-      Data: body.comments
-      }
-     },
-     Subject: {
-      Charset: 'UTF-8',
-      Data: 'Supply Chain Contact Us'
-     }
+  let params = {
+    Destination: { 
+      CcAddresses: [],
+      ToAddresses: [
+        'carlos.ortiz@genommalab.com','daniela.lopez@genommalab.com',
+      ]
     },
-  Source: body.email,
-  ReplyToAddresses: [
-     body.email,
-  ],
-};
-
-var sendPromise = new AWS.SES({apiVersion: '2010-12-01'}).sendEmail(params).promise();
-
-sendPromise
-  .then( data => {
-    callback(null,{
-      statusCode:200,
-      body:JSON.stringify(data.MessageId),
-      headers:{
-        "Access-Control-Allow-Origin":"*"
+    Message: { 
+      Body: {
+        Html: {
+        Charset: "UTF-8",
+        Data: body.comments
+        },
+        Text: {
+        Charset: "UTF-8",
+        Data: body.comments
+        }
+      },
+      Subject: {
+        Charset: 'UTF-8',
+        Data: 'Supply Chain Contact Us'
       }
-    });
-  })
-  .catch( err => {
-    callback({
-      statusCode:500,
-      body:JSON.stringify(err),
-      headers:{
-        "Access-Control-Allow-Origin":"*"
-      }
-    });
-  });
-};
+      },
+    Source: body.email,
+    ReplyToAddresses: [
+      body.email,
+    ],
+  }
+
+  let sendPromise = new AWS.SES({apiVersion: '2010-12-01'}).sendEmail(params).promise();
+
+  sendPromise
+    .then( data => {
+      callback(null,{
+        statusCode:200,
+        body:JSON.stringify(data.MessageId),
+        headers:{
+          "Access-Control-Allow-Origin":"*"
+        }
+      });
+    })
+    .catch( err => {
+      callback({
+        statusCode:500,
+        body:JSON.stringify(err),
+        headers:{
+          "Access-Control-Allow-Origin":"*"
+        }
+      })
+    })
+}
 
