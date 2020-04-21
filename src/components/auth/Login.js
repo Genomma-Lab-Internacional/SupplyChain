@@ -39,6 +39,12 @@ export default function Login (props) {
 			case "Saroma_h4ch3ocH0S4roM4G3nnoM4LAB":
 				props.history.push(`/adddataprovider/${user.username}`)
 				break
+			case "Everest_G3noMM4Ev3R3StLABAhc38":
+				props.history.push(`/adddataprovider/${user.username}`)
+				break
+			case "Gelpharma_GG3lph4rm4N0mm4L4bH8":
+				props.history.push(`/adddataprovider/${user.username}`)
+				break
 			case "Test_Test":
 				props.history.push(`/adddataprovider/${user.username}`)
 				break
