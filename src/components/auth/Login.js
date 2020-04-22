@@ -45,6 +45,12 @@ export default function Login (props) {
 			case "Gelpharma_GG3lph4rm4N0mm4L4bH8":
 				props.history.push(`/adddataprovider/${user.username}`)
 				break
+			case "Farmapiel_f4Rmm$p!#lg#n0mm4l$bHoch0":
+				props.history.push(`/adddataprovider/${user.username}`)
+				break
+			case "Giaccar_GG14CC4rlab3nOmM4ochoHH3":
+				props.history.push(`/adddataprovider/${user.username}`)
+				break
 			case "Test_Test":
 				props.history.push(`/adddataprovider/${user.username}`)
 				break
