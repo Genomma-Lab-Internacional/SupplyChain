@@ -60,6 +60,21 @@ export default function Login (props) {
 			case "Absara_4bS4r4g3n0mm4l4b4ch38ch8":
 				props.history.push(`/adddataprovider/${user.username}`)
 				break
+			case "CosmeticColors_c0l0rSC0smEt1csGle4nb0mm48":
+				props.history.push(`/adddataprovider/${user.username}`)
+				break
+			case "Selder_G3N0MM4s3ld3rL4B0ch0":
+				props.history.push(`/adddataprovider/${user.username}`)
+				break
+			case "CenturyLab_LABc3nt7r1labg3n0mm40cho0":
+				props.history.push(`/adddataprovider/${user.username}`)
+				break
+			case "Liferpal_0ch0l1f3p4rl0cho0LAB":
+				props.history.push(`/adddataprovider/${user.username}`)
+				break
+			case "RotoPack_0ch0g3n0mm4R0T0L4bP4ck":
+				props.history.push(`/adddataprovider/${user.username}`)
+				break
 			case "Test_Test":
 				props.history.push(`/adddataprovider/${user.username}`)
 				break
