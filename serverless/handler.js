@@ -1,4 +1,3 @@
-'use strict';
 const AWS = require('aws-sdk'); 
 const connection = require ("./connection")
 AWS.config.update({region: 'us-east-1'});
@@ -34,6 +33,7 @@ module.exports.AddDataProvider = (event,context,callback) => {
   context.callbackWaitsForEmptyEventLoop = false;
   
   const body = JSON.parse(event.body);
+  let provider = body.provider
   let values=[]
   let insert = `INSERT INTO ${body.provider}Inventario (SKUA,descripcion,cantidad,provider) VALUES ?`;
   
@@ -43,36 +43,35 @@ module.exports.AddDataProvider = (event,context,callback) => {
 
   connection.query(insert,[values],(error,rows) => {
     if(error) {
-      let params = {
-        Destination: { 
-          CcAddresses: ["carlos.ortiz@genommalab.com"],
-          ToAddresses: ["mario.lopez@genommalab.com"]
-        },
-        Message: { 
-          Body: {
-            Html: {
-            Charset: "UTF-8",
-            Data: `${body.provider} ha subido su inventario correctamente`
-            },
-            Text: {
-            Charset: "UTF-8",
-            Data: `${body.provider} ha subido su inventario correctamente`
-            }
-          },
-          Subject: {
-            Charset: 'UTF-8',
-            Data: `${body.provider} ha subido su inventario`
-          }
-          },
-        Source: body.email,
-        ReplyToAddresses: [
-          body.email,
-        ],
-      }
-      let sendPromise = new AWS.SES({apiVersion: '2010-12-01'}).sendEmail(params).promise()
-      sendPromise
-        .then( d => {
-          console.log(d)
+      console.log("if")
+      // let params1 = {
+      //   Destination: { 
+      //     CcAddresses: ["mario.lopez@genommalab.com","mario.cruz@genommalab.com","daniela.lopez@genommalab.com"],
+      //     ToAddresses: ["carlos.ortiz@genommalab.com"]
+      //   },
+      //   Message: { 
+      //     Body: {
+      //       Html: {
+      //       Charset: "UTF-8",
+      //       Data: `${provider} no pudo subir su inventario. Busca soporte de Inteligencia Artificial`
+      //       },
+      //       Text: {
+      //       Charset: "UTF-8",
+      //       Data: `${provider} no pudo subir su inventario. Busca soporte de Inteligencia Artificial`
+      //       }
+      //     },
+      //     Subject: {
+      //       Charset: 'UTF-8',
+      //       Data: `**${provider}**, ERROR en carga de inventario`
+      //     }
+      //     },
+      //   Source: "mario.lopez@genommalab.com",
+      // }
+
+      // let sendPromise = new AWS.SES({apiVersion: '2010-12-01'}).sendEmail(params1).promise()
+      // sendPromise
+      //   .then( d => {
+      //     console.log("ERRORALCARGARPEROOKALENVIAREMAIL",d)
           callback({
             statusCode:500,
             body:JSON.stringify(error),
@@ -80,44 +79,66 @@ module.exports.AddDataProvider = (event,context,callback) => {
               "Access-Control-Allow-Origin":"*"
             }
           })
-        })
-        .catch( e => console.log(e) )
+        // })
+        // .catch( e =>{
+        //   console.log("ERRORALCARGARYENVIARMAIL",e)
+        //   callback({
+        //     statusCode:500,
+        //     body:JSON.stringify(error),
+        //     headers:{
+        //       "Access-Control-Allow-Origin":"*"
+        //     }
+        //   })
+        // })
      
     } else {
-      let params = {
-        Destination: { 
-          CcAddresses: ["mario.lopez@genommalab.com","adrian.cruz@genommalab.com","daniela.lopez@genommalab.com"],
-          ToAddresses: ["carlos.ortiz@genommalab.com"]
-        },
-        Message: { 
-          Body: {
-            Html: {
-              Charset: "UTF-8",
-              Data: `${body.provider} no ha podido subir su inventario`
-            },
-            Text: {
-              Charset: "UTF-8",
-              Data: `${body.provider} no ha podido subir su inventario`
+      console.log("else")
+      // let params = {
+      //   Destination: { 
+      //     CcAddresses: ["mario.lopez@genommalab.com","mario.cruz@genommalab.com","daniela.lopez@genommalab.com"],
+      //     ToAddresses: ["carlos.ortiz@genommalab.com"]
+      //   },
+      //   Message: { 
+      //     Body: {
+      //       Html: {
+      //         Charset: "UTF-8",
+      //         Data: `${body.provider} ya subio su inventario`
+      //       },
+      //       Text: {
+      //         Charset: "UTF-8",
+      //         Data: `${body.provider} ya subio su inventario`
+      //       }
+      //     },
+      //     Subject: {
+      //       Charset: 'UTF-8',
+      //       Data: `**${body.provider}** Ya subio su inventario`
+      //     }
+      //   },
+      //   Source: "mario.lopez@genommalab.com",
+      // }
+      // console.log(params)
+      // let sendPromise = new AWS.SES({apiVersion: '2010-12-01'}).sendEmail(params).promise()
+      // sendPromise
+      //   .then( ( ) => {
+          console.log("EXITOALCARGARYENVIAREMAIL",rows)
+          callback(null,{
+            statusCode:200,
+            body:JSON.stringify("DONE"),
+            headers:{
+              "Access-Control-Allow-Origin":"*"
             }
-          },
-          Subject: {
-            Charset: 'UTF-8',
-            Data: `ERROR al subir el inventario de ${body.provider}`
-          }
-        },
-        Source: "mario.lopez@genommalab.com",
-      }
-      let sendPromise = new AWS.SES({apiVersion: '2010-12-01'}).sendEmail(params).promise()
-      sendPromise
-        .then( d => console.log(d) )
-        .catch( e => console.log(e) )
-      callback(null,{
-        statusCode:200,
-        body:JSON.stringify(body.table),
-        headers:{
-          "Access-Control-Allow-Origin":"*"
-        }
-      })
+          })
+        // })
+        // .catch( e =>{
+        //   console.log("EXITOALCARGARPERONOALENVIAREMAIL",e)
+        //   callback(null,{
+        //     statusCode:200,
+        //     body:JSON.stringify("DONE"),
+        //     headers:{
+        //       "Access-Control-Allow-Origin":"*"
+        //     }
+        //   }) 
+        // })
     }
   })
 }

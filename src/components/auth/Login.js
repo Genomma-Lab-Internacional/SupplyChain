@@ -75,6 +75,21 @@ export default function Login (props) {
 			case "RotoPack_0ch0g3n0mm4R0T0L4bP4ck":
 				props.history.push(`/adddataprovider/${user.username}`)
 				break
+			case "Olnatura_0ln4tuR4LABg3n0mm48hc8":
+				props.history.push(`/adddataprovider/${user.username}`)
+				break
+			case "Beautyge_gB3n0mm48ch84ut1G3":
+				props.history.push(`/adddataprovider/${user.username}`)
+				break
+			case "Profilatex_G3n0mm4LABPro0f1l4t3X8ch8":
+				props.history.push(`/adddataprovider/${user.username}`)
+				break
+			case "IndusOleofinos_1nDuS0l30f1n0sLAB8ch84ch3G3N":
+				props.history.push(`/adddataprovider/${user.username}`)
+				break
+			case "QuimicaYFarmacia_Qu1m1c4YF4rm4c14LABG3n0mm488":
+				props.history.push(`/adddataprovider/${user.username}`)
+				break
 			case "Test_Test":
 				props.history.push(`/adddataprovider/${user.username}`)
 				break
