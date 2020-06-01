@@ -323,6 +323,41 @@ module.exports.ContactUs = (event, context, callback) => {
     })
 }
 
+module.exports.AutoSendEmailProvider = (event, context, callback) => {
+  const body = JSON.parse(event.body);
+  
+  let params = {
+    Destination: { 
+      CcAddresses: ["mario.lopez@genommalab.com","mario.cruz@genommalab.com","daniela.lopez@genommalab.com"],
+      ToAddresses: ["carlos.ortiz@genommalab.com"]
+    },
+    Message: { 
+      Body: {
+        Html: {
+          Charset: "UTF-8",
+          Data: `El proveedor ${body.provider} ha subido su inventario a través de la WEBAPP`
+        },
+        Text: {
+          Charset: "UTF-8",
+          Data: `El proveedor ${body.provider} ha subido su inventario a través de la WEBAPP`
+        }
+      },
+      Subject: {
+        Charset: 'UTF-8',
+        Data: `${body.provider}; Subió su inventario a la WEBAPP`
+      }
+    },
+    Source: "mario.lopez@genommalab.com",
+  }
+  
+  let sendPromise = new AWS.SES({apiVersion: '2010-12-01'}).sendEmail(params).promise()
+  
+  sendPromise
+    .then( _=> console.log("GOOD") )
+    .catch( e => console.log("BAD",e) )
+}
+
+
 
 
         // })

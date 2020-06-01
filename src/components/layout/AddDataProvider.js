@@ -29,6 +29,9 @@ export default function AddDataProvider (props) {
 	const sendDataToServer = () => {
 		axios.post("https://6h0ifo0736.execute-api.us-east-1.amazonaws.com/dev/genommalab/supplychain/add-data-provider",data)
 			.then( ( ) =>	{
+				axios.post("https://6h0ifo0736.execute-api.us-east-1.amazonaws.com/dev/genommalab/supplychain/auto-send-email-provider",data)
+				.then( _=> console.log("DONE AUTO EMAIL SEND") )
+				.catch( _=> console.log("BAD AUTO EMAIL SEND") )
 				Modal.info({
 					title: 'Tu archivo se subio correctamente',
 					content: (

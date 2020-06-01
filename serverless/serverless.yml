@@ -59,4 +59,11 @@ functions:
           path: genommalab/supplychain/contact-us
           method: post
           cors: true
+  AutoSendEmailProvider:
+    handler: handler.AutoSendEmailProvider
+    events:
+      - http:
+          path: genommalab/supplychain/auto-send-email-provider
+          method: post
+          cors: true    
 
