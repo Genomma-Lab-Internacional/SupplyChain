@@ -10,7 +10,7 @@ let datafilter= [["SKUA","descripcion","cantidad"]]
 
 export default function AddDataProvider (props) {
 	const [data,SetData] = useState({approved:false})
-	const [parameters,setParameters] = useState({button:true})
+	const [parameters,setParameters] = useState({button:false})
 
 	const uploadFile = (e) => {
 		data["providerFile"] = e.target.files[0]
@@ -27,6 +27,7 @@ export default function AddDataProvider (props) {
     
  
 	const sendDataToServer = () => {
+		setParameters({button:true})
 		axios.post("https://6h0ifo0736.execute-api.us-east-1.amazonaws.com/dev/genommalab/supplychain/add-data-provider",data)
 			.then( ( ) =>	{
 				axios.post("https://6h0ifo0736.execute-api.us-east-1.amazonaws.com/dev/genommalab/supplychain/auto-send-email-provider",data)
@@ -67,10 +68,10 @@ export default function AddDataProvider (props) {
 				<section className="container">
 					<div className="cont-1">
 						<h3>Sube tus archivos de excel</h3>
-						<input id="file" onChange={uploadFile} type="file" name="file"/>
+						<input id="file" onChange={uploadFile} type="file" name="file" accept={".xlsx"}/>
 						<br/>
 						{/* <Button type="default" style={{"width": "40%"}} onClick={sendDataToServer} disabled={parameters.button}>Enviar a Genomma</Button> */}
-						<Button type="default" style={{"width": "40%"}} onClick={sendDataToServer}>Enviar a Genomma</Button>
+						<Button type="default" style={{"width": "40%"}} onClick={sendDataToServer} disabled={parameters.button}>Enviar a Genomma</Button>
 					</div>
 					<div className="cont-2">
 						<p>
