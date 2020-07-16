@@ -90,6 +90,96 @@ export default function Login (props) {
 			case "QuimicaYFarmacia_Qu1m1c4YF4rm4c14LABG3n0mm488":
 				props.history.push(`/adddataprovider/${user.username}`)
 				break
+			case "IndustriasQuimicasIndependencia_1Nd%ST$aSqu9m8c#asnd3Ip":
+				props.history.push(`/adddataprovider/${user.username}`)
+				break
+			case "LQFLaboratorioQuimico_4ch38ch8LQFl4b0rat0rioQ71m1c0":
+				props.history.push(`/adddataprovider/${user.username}`)
+				break
+			case "PersonnaInternational_h8p3rs0nN41nt3rNati0n4lh8":
+				props.history.push(`/adddataprovider/${user.username}`)
+				break
+			case "DeMexico_h8ch8h4ch38ch8d3M3quch1k0":
+				props.history.push(`/adddataprovider/${user.username}`)
+				break
+			case "SarintMaquilas_8ache8s4RINtm$q/!l$s":
+				props.history.push(`/adddataprovider/${user.username}`)
+				break
+			case "ColorLink_C0l=rL!nk(ch(!ch#":
+				props.history.push(`/adddataprovider/${user.username}`)
+				break
+			case "RecicladoraDePlasticos_r#c!Cl$d=r$de8achepl$st!cos":
+				props.history.push(`/adddataprovider/${user.username}`)
+				break
+			case "Renopac_R#n=p$coch=$ch#":
+				props.history.push(`/adddataprovider/${user.username}`)
+				break
+			case "AstraZeneca_Ostr%Z(n$caocho":
+				props.history.push(`/adddataprovider/${user.username}`)
+				break
+			case "ClaraActitudMexicana_cl$r$%ct!tudm#xicanah8":
+				props.history.push(`/adddataprovider/${user.username}`)
+				break
+			case "LabDermatologicoPrada_hochoLABD#RM$T=L=GIC=prada":
+				props.history.push(`/adddataprovider/${user.username}`)
+				break
+			case "LabPisa_h8choLabP!s$ocho":
+				props.history.push(`/adddataprovider/${user.username}`)
+				break
+			case "LabRetyDeColombia_l$Br#t/d$C0l=mb!a":
+				props.history.push(`/adddataprovider/${user.username}`)
+				break
+			case "LabRussek_LaBR%uss#kh((h":
+				props.history.push(`/adddataprovider/${user.username}`)
+				break
+			case "LabValdecasas_l$bV$lDc$s4sc4sas":
+				props.history.push(`/adddataprovider/${user.username}`)
+				break
+			case "NovagInfancia_n=v$g!nf$nc!$1nf4nc1a":
+				props.history.push(`/adddataprovider/${user.username}`)
+				break
+			case "ServiciosAdministrativosUrbanus_s3rv1c1osadm9nis4tra4tiv9s":
+				props.history.push(`/adddataprovider/${user.username}`)
+				break
+			case "GrupoRostenberg_gr8p3or93st4nb3er45":
+				props.history.push(`/adddataprovider/${user.username}`)
+				break
+			case "Indelpa_in2nd30lp2aj4an":
+				props.history.push(`/adddataprovider/${user.username}`)
+				break
+			case "LabZell_l4ab4ak4mZ#ll":
+				props.history.push(`/adddataprovider/${user.username}`)
+				break
+			case "Tecnosol_t#cacheS0l8chae":
+				props.history.push(`/adddataprovider/${user.username}`)
+				break
+			case "UniversalWipes_%n$i!v#4rs$alw1P43s":
+				props.history.push(`/adddataprovider/${user.username}`)
+				break
+			case "LabColumbiaComercial_l$babC0l0mb!i$4c0m4rercial":
+				props.history.push(`/adddataprovider/${user.username}`)
+				break
+			case "MediaEmpaques_m2dia92amepaques":
+				props.history.push(`/adddataprovider/${user.username}`)
+				break
+			case "PharmacosExakta_p2harm2ca92oC2$smaQ":
+				props.history.push(`/adddataprovider/${user.username}`)
+				break
+			case "Serral_O#4SerArral#2al":
+				props.history.push(`/adddataprovider/${user.username}`)
+				break
+			case "SinergiaFarmaceutica_s1N#rG!Aphra$ma#ceucik":
+				props.history.push(`/adddataprovider/${user.username}`)
+				break
+			case "UltraLaboratorios_O#lultraortiso2CdW":
+				props.history.push(`/adddataprovider/${user.username}`)
+				break
+			case "UnitedExchangeCorp_unIt#deXch%ngeC0rP":
+				props.history.push(`/adddataprovider/${user.username}`)
+				break
+			case "LabManuell_l$bMan$uellm$anu3ell":
+				props.history.push(`/adddataprovider/${user.username}`)
+				break
 			case "Test_Test":
 				props.history.push(`/adddataprovider/${user.username}`)
 				break
