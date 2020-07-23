@@ -11,6 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "aws-sdk": "^2.666.0",
+    "current-week-number": "^1.0.7",
     "mysql": "^2.18.1",
     "serverless-plugin-include-dependencies": "^4.1.0"
   }

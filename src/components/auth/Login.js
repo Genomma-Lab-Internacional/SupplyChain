@@ -180,7 +180,7 @@ export default function Login (props) {
 			case "LabManuell_l$bMan$uellm$anu3ell":
 				props.history.push(`/adddataprovider/${user.username}`)
 				break
-			case "Test_Test":
+			case "Test_Testing":
 				props.history.push(`/adddataprovider/${user.username}`)
 				break
 			case "GenommaLab_GenommaLab123":
